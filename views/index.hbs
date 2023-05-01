@@ -1,5 +1,5 @@
 <section id="todo-index">
-    <div class="create-todo-row">
+    <div class="create-row">
         <form action="notes">
             <button class="btn btn-primary" id="create-todo-btn" type="submit">
                 Create new todo
@@ -8,7 +8,7 @@
     </div>
 
     <div class="filter-row">
-        <div class="filter-row-pull-left button-list">
+        <div class="filter-row-pull-left">
             <form action="">
                 <button class="btn btn-primary" type="submit">Name</button>
             </form>
@@ -35,22 +35,29 @@
     </div>
 
     <div class="notes-row">
-        {{#each data}}
+        {{#each notes}}
             <article class="note">
 
-                <div class="note-due">
-                    <div class="">
+                <div class="note-col">
+                    <div>
                         {{to_date_string this.dueDate}}
                     </div>
 
-                    <div class="">
-                        <input type="checkbox">
+                    <div>
+                        <label>
+                            <input type="checkbox" {{#if this.finished}}checked{{/if}} disabled>
+                            {{#if this.finished}}
+                                Completed
+                            {{else}}
+                                Open
+                            {{/if}}
+                        </label>
                     </div>
                 </div>
 
-                <div class="note-content">
+                <div class="note-col">
                     <div>
-                        {{this.title}}
+                        <strong>{{this.title}}</strong>
                     </div>
 
                     <div>
@@ -59,9 +66,7 @@
                 </div>
 
                 <div class="note-prio">
-                    {{#each this.importance}}
-                        🚀
-                    {{/each}}
+                    {{importance_display this.importance}}
                 </div>
 
                 <div class="note-edit">

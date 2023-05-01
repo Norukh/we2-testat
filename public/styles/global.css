@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Playfair+Display&display=swap');
 
 :root {
     --input-border-radius: 4px;
@@ -8,12 +8,12 @@
 }
 
 body {
-    font-family: 'Roboto Mono', sans-serif;
+    font-family: 'Noto Serif', serif;
     font-weight: normal;
     font-style: normal;
 }
 
-a {
+a, button {
     cursor: pointer;
 }
 
@@ -56,15 +56,17 @@ label {
     align-items: center;
 }
 
-.button-list > button {
-    margin-right: 5px;
-}
-
 .filter-row {
     padding: 1em 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.create-row {
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .filter-row-pull-left {
@@ -86,7 +88,10 @@ label {
 .note {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 10px 0;
+    border-top: 1px solid var(--blue-border-focus);
 }
 
 .note-edit {
@@ -96,21 +101,20 @@ label {
 }
 
 .note-prio {
-    display: flex;
-    align-items: start;
+    float: right;
     text-align: right;
+    padding-right: 10px;
+    font-size: 20pt;
 }
 
-.note-content {
+.note-col {
     display: flex;
     flex-direction: column;
     justify-content: start;
 }
 
-.note-due {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
+.note-col > div:last-child {
+    margin-top: 1em;
 }
 
 @media (max-width: 767px) {
@@ -152,7 +156,7 @@ textarea:focus {
 form {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 form > div {
@@ -160,9 +164,8 @@ form > div {
 }
 
 form > div > input, textarea {
-    width: 100%;
+    width: 97%;
 }
-
 
 /* Bootstrap button */
 .btn {
@@ -245,3 +248,23 @@ fieldset:disabled a.btn {
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
+.filter-row-pull-right .btn {
+    margin-right: 0;
+}
+
+datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    writing-mode: horizontal-tb;
+    width: 260px;
+}
+
+option {
+    padding-top: 0.5em;
+}
+
+input[type="range"] {
+    width: 250px;
+    margin: 0;
+}

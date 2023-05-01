@@ -4,7 +4,7 @@ import { noteStore } from "../services/note-store";
 export class IndexController {
   async index(req: Request, res: Response) {
     res.render("index", {
-      data: await noteStore.all(),
+      notes: await noteStore.all(),
       dark: false,
     });
   }

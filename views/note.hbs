@@ -2,33 +2,50 @@
     <form action="" method="post">
         <div>
             <label for="title-input">Title</label>
-            <input id="title-input" name="title" type="text" placeholder="Enter title">
+            <input id="title-input" value="{{note.title}}" name="title" type="text" placeholder="Enter title" required>
         </div>
 
         <div>
             <label for="importance-input">Importance</label>
-            <input id="importance-input" name="importance" type="number" min="1" max="5">
+            <input id="importance-input" name="importance" class="importance" type="range" min="1" max="5" step="1"
+                   value="{{note.importance}}" list="markers">
+
+            <datalist id="markers">
+                <option value="1" label="1"></option>
+                <option value="2" label="2"></option>
+                <option value="3" label="3"></option>
+                <option value="4" label="4"></option>
+                <option value="5" label="5"></option>
+            </datalist>
         </div>
 
         <div>
             <label for="due-date-input">Due Date</label>
-            <input id="due-date-input" name="due-date" type="date">
+            <input id="due-date-input" name="dueDate" type="date" value="{{to_date_value note.dueDate}}">
         </div>
 
         <label for="finished-checkbox">
-            <input id="finished-checkbox" name="finished" type="checkbox">
+            <input id="finished-checkbox" name="finished" type="checkbox" {{#if note.finished}}checked{{/if}}>
             Finished
         </label>
 
         <div>
             <label for="description-input">Description</label>
-            <textarea id="description-input" name="description" rows="5"></textarea>
+            <textarea id="description-input" name="description" rows="5">
+                {{note.description}}
+            </textarea>
         </div>
 
         <div class="notes-page-buttons-row button-list">
-            <button id="update-button" type="submit">Update</button>
-            <button id="update-overview-button" type="submit">Update & Overview</button>
-            <button id="overview-button" type="submit">Overview</button>
+            {{#if note._id}}
+                <button class="btn btn-primary" id="update-button" type="submit">Update</button>
+                <button class="btn btn-primary" id="update-overview-button" type="submit">Update & Overview</button>
+            {{else}}
+                <button class="btn btn-primary" id="create-button" type="submit">Create</button>
+                <button class="btn btn-primary" id="create-overview-button" type="submit">Create & Overview</button>
+            {{/if}}
+            <button class="btn btn-primary" id="overview-button"
+                    type="submit" formaction="/" formmethod="get">Overview</button>
         </div>
     </form>
 </section>

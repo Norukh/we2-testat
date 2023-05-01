@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { noteStore } from "../services/note-store";
+import { prepareRequestBody } from "../utils/request-util";
 
 export class NotesController {
   createNote = (req: Request, res: Response): void => {
@@ -7,36 +8,36 @@ export class NotesController {
   };
 
   newNote = async (req: Request, res: Response): Promise<void> => {
-    console.log(req);
-
-    res.render(
-      "note",
-      await noteStore.add(
-        req.body.title,
-        req.body.importance,
-        req.body.dueDate,
-        !!req.body.finished,
-        req.body.description
-      )
-    );
+    const preparedReqBody = prepareRequestBody(req.body);
+    res.render("note", {
+      note: await noteStore.add(
+        preparedReqBody.title,
+        preparedReqBody.importance,
+        preparedReqBody.dueDate,
+        preparedReqBody.finished,
+        preparedReqBody.description
+      ),
+    });
   };
 
   editNote = async (req: Request, res: Response): Promise<void> => {
-    res.render(
-      "note",
-      await noteStore.update(
+    const preparedReqBody = prepareRequestBody(req.body);
+    res.render("note", {
+      note: await noteStore.update(
         req.params.id,
-        req.body.title,
-        req.body.importance,
-        req.body.dueDate,
-        req.body.finished,
-        req.body.description
-      )
-    );
+        preparedReqBody.title,
+        preparedReqBody.importance,
+        preparedReqBody.dueDate,
+        preparedReqBody.finished,
+        preparedReqBody.description
+      ),
+    });
   };
 
   showNote = async (req: Request, res: Response): Promise<void> => {
-    res.render("note", await noteStore.get(req.params.id));
+    res.render("note", {
+      note: await noteStore.get(req.params.id),
+    });
   };
 }
 export const notesController = new NotesController();
