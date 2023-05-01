@@ -2,10 +2,11 @@
   "compilerOptions": {
     "module": "CommonJS", // https://github.com/wclr/ts-node-dev/issues/265
     "target": "es2020",
-    "sourceMap": true,
+    "sourceMap": false,
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "strict": true
+    "strict": true,
+    "noEmit": true,
   },
   "exclude": [
     "node_modules"
