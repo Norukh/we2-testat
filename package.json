@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
+    "dev": "ts-node-dev index.ts",
     "test": "mocha -r ts-node/register 'tests/**/*.ts'",
     "lint": "tsc --noEmit && eslint . --ext .ts"
   },
@@ -34,6 +35,7 @@
     "express-handlebars": "^7.0.4",
     "nedb": "^1.8.0",
     "prettier": "^2.8.7",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0"
   }
 }

@@ -1,9 +1,10 @@
 import express from "express";
-import exphbs from "express-handlebars";
+import { create } from "express-handlebars";
 import session from "express-session";
 import path from "path";
 import bodyParser from "body-parser";
 import { indexRoutes } from "./routes/index-routes";
+import { noteRoutes } from "./routes/note-routes";
 import { helpers } from "./utils/handlebar-util";
 import { sessionUserSettings, Settings } from "./utils/session-middleware";
 
@@ -22,7 +23,7 @@ declare global {
 }
 
 export const app = express();
-const hbs = exphbs.create({
+const hbs = create({
   extname: ".hbs",
   defaultLayout: "default",
   helpers: {
@@ -46,4 +47,5 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use("/notes", noteRoutes);
 app.use("/", indexRoutes);

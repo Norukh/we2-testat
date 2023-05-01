@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
+import { noteStore } from "../services/note-store";
 
 export class IndexController {
-  index(req: Request, res: Response) {
-    res.render("index", { data: "Hello World", dark: true });
+  async index(req: Request, res: Response) {
+    res.render("index", {
+      data: await noteStore.all(),
+      dark: false,
+    });
   }
 }
 
