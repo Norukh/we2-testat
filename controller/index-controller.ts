@@ -38,8 +38,14 @@ export class IndexController {
       newStyle = Style.Dark;
     }
 
+    // bring user back to the page the action was called from
+    const origin = req.headers.origin as string;
+    let redirectUrl = req.headers.referer as string;
+
+    redirectUrl = redirectUrl?.replace(origin, "");
+
     settings.style = newStyle;
-    res.redirect("/");
+    res.redirect(redirectUrl);
   }
 
   async orderByRedirect(req: Request, res: Response) {
