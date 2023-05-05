@@ -23,10 +23,14 @@
 
                 <div class="theme-switch-area">
 
-                    <label for="theme-switch" class="gui-switch">
-                        Theme
-                        <input type="checkbox" role="switch" id="theme-switch">
-                    </label>
+                    <form action="/switch-theme" method="post">
+                        <label for="theme-switch" class="gui-switch">
+                            Theme
+                            <button class="btn-light" type="submit" role="switch" id="theme-switch">
+                                {{sunOrMoon theme}}
+                            </button>
+                        </label>
+                    </form>
                 </div>
             </header>
 

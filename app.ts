@@ -47,5 +47,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => sessionUserSettings(req, res, next));
+
 app.use("/notes", noteRoutes);
 app.use("/", indexRoutes);

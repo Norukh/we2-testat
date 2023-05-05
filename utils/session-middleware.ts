@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { Style } from "./style";
 
 export const sessionUserSettings = (
   req: Request,
@@ -7,24 +8,31 @@ export const sessionUserSettings = (
 ) => {
   const userSettings = req.session?.settings || {
     orderBy: "title",
-    orderDirection: -1,
+    orderAsc: false,
+    filterCompleted: false,
     style: Style.Light,
   };
-  const { orderBy, orderDirection } = req.query;
+
+  const { orderBy, orderAsc, filterCompleted } = req.body ?? userSettings;
 
   if (orderBy) {
     userSettings.orderBy = orderBy.toString();
   }
-  if (orderDirection) {
-    userSettings.orderDirection = parseInt(orderDirection.toString());
+  if (orderAsc) {
+    userSettings.orderAsc = orderAsc === "true";
+  }
+  if (filterCompleted) {
+    userSettings.filterCompleted = filterCompleted === "true";
   }
 
   req.settings = req.session.settings = userSettings;
-  return;
+
+  next();
 };
 
 export interface Settings {
   style: Style;
   orderBy: string;
-  orderDirection: number;
+  orderAsc: boolean;
+  filterCompleted: boolean;
 }

@@ -1,7 +1,7 @@
 <section id="todo-index">
     <div class="create-row">
         <form action="notes">
-            <button class="btn btn-primary" id="create-todo-btn" type="submit">
+            <button class="btn" id="create-todo-btn" type="submit">
                 Create new todo
             </button>
         </form>
@@ -9,32 +9,40 @@
 
     <div class="filter-row">
         <div class="filter-row-pull-left">
-            <form action="">
-                <button class="btn btn-primary" type="submit">Name</button>
-            </form>
+            {{#each filters}}
+                <form method="post">
+                    <input type="hidden" name="orderBy" value="{{getItemOfList this 0}}">
+                    <input type="hidden" name="orderAsc" value="{{not ../orderAsc}}">
+                    <input type="hidden" name="filterCompleted" value="{{../filterCompleted}}">
 
-            </form action="">
-                <button class="btn btn-primary" type="submit">By Due Date</button>
-            </form>
-
-            </form action="">
-                <button class="btn btn-primary" type="submit">By Creation Date</button>
-            </form>
-
-            </form action="">
-                <button class="btn btn-primary" type="submit">By Importance</button>
-            </form>
+                    <button class="btn mr-1" type="submit">
+                        {{evaluateArrow ../orderBy (getItemOfList this 0) ../orderAsc}}
+                        {{getItemOfList this 1}}
+                    </button>
+                </form>
+            {{/each}}
         </div>
 
         <div class="filter-row-pull-right">
-            <form>
-                <button class="btn btn-primary" type="submit">Filter completed</button>
+            <form method="post">
+                <input type="hidden" name="orderBy" value="{{orderBy}}">
+                <input type="hidden" name="orderAsc" value="{{orderAsc}}">
+                <input type="hidden" name="filterCompleted" value="{{not filterCompleted}}">
+
+                <button class="btn" type="submit">Filter completed</button>
             </form>
         </div>
 
     </div>
 
     <div class="notes-row">
+
+        {{#if (not notes.length) }}
+            <article class="note">
+                No TODOs available.
+            </article>
+        {{/if}}
+
         {{#each notes}}
             <article class="note">
 
@@ -70,8 +78,15 @@
                 </div>
 
                 <div class="note-edit">
-                    <a class="btn btn-primary" href="/notes/{{this._id}}">Edit</a>
+                    <form method="get" action="/notes/{{this._id}}">
+                        <button class="btn mr-1" type="submit">Edit</button>
+                    </form>
+
+                    <form method="post" action="/notes/{{this._id}}/delete">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
                 </div>
+
             </article>
         {{/each}}
 

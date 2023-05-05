@@ -1,3 +1,6 @@
+import { Style } from "./style";
+import { DateUtil } from "./date-util";
+
 export const helpers = {
   if_eq: function (a: any, b: any, opts: any) {
     if (a === b) {
@@ -11,15 +14,20 @@ export const helpers = {
     const today = new Date();
     const dates = new Map([
       ["Today", today],
-      ["Tomorrow", new Date(new Date().getDate() + 1)],
-      ["Yesterday", new Date(new Date().getDate() - 1)],
+      ["Tomorrow", DateUtil.addDays(today, 1)],
+      ["Yesterday", DateUtil.addDays(today, -1)],
     ]);
 
+    let dateKey = "";
     dates.forEach((val, key) => {
-      if (date === val) {
-        return key;
+      if (DateUtil.toDateValue(val) === DateUtil.toDateValue(date)) {
+        dateKey = key;
       }
     });
+
+    if (dateKey !== "") {
+      return dateKey;
+    }
 
     if (date instanceof Date) {
       const diff = date.getTime() - today.getTime();
@@ -45,9 +53,36 @@ export const helpers = {
 
   to_date_value: function (date: Date): string | void {
     if (date instanceof Date && date !== null && date !== undefined) {
-      const offset = date.getTimezoneOffset();
-      date = new Date(date.getTime() - offset * 60 * 1000);
-      return date.toISOString().split("T")[0];
+      return DateUtil.toDateValue(date);
+    }
+  },
+
+  not: function (a: boolean): boolean | undefined {
+    if (a === undefined || a === null) {
+      return undefined;
+    }
+    return !a;
+  },
+
+  getItemOfList: (list: any[], index: number): any => {
+    return list[index];
+  },
+
+  evaluateArrow: (a: string, b: string, c: boolean): string => {
+    if (a === b) {
+      if (c) {
+        return "⬆";
+      }
+      return "⬇";
+    }
+    return "";
+  },
+
+  sunOrMoon: (theme: Style) => {
+    if (theme === Style.Light) {
+      return "🌙";
+    } else if (theme === Style.Dark) {
+      return "🌞";
     }
   },
 };

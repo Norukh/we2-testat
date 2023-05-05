@@ -1,9 +1,11 @@
-export function prepareRequestBody(requestBody: any): any {
-  return {
-    title: requestBody.title,
-    importance: +requestBody.importance,
-    dueDate: new Date(requestBody.dueDate + "T00:00"),
-    finished: !!requestBody.finished,
-    description: requestBody.description,
-  };
+import { Note } from "../models/note";
+
+export function prepareNote(requestBody: any, note: Note): Note {
+  note.title = requestBody.title;
+  note.importance = +requestBody.importance;
+  note.dueDate = new Date(requestBody.dueDate);
+  note.finished = !!requestBody.finished;
+  note.description = requestBody.description;
+
+  return note;
 }

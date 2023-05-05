@@ -31,20 +31,18 @@
 
         <div>
             <label for="description-input">Description</label>
-            <textarea id="description-input" name="description" rows="5">
-                {{note.description}}
-            </textarea>
+            <textarea id="description-input" name="description" rows="5">{{note.description}}</textarea>
         </div>
 
         <div class="notes-page-buttons-row button-list">
             {{#if note._id}}
-                <button class="btn btn-primary" id="update-button" type="submit">Update</button>
-                <button class="btn btn-primary" id="update-overview-button" type="submit">Update & Overview</button>
+                <button class="btn mr-1" id="update-button" type="submit">Update</button>
+                <button class="btn mr-1" id="update-overview-button" type="submit">Update & Overview</button>
             {{else}}
-                <button class="btn btn-primary" id="create-button" type="submit">Create</button>
-                <button class="btn btn-primary" id="create-overview-button" type="submit">Create & Overview</button>
+                <button class="btn mr-1" id="create-button" type="submit">Create</button>
+                <button class="btn mr-1" id="create-overview-button" type="submit">Create & Overview</button>
             {{/if}}
-            <button class="btn btn-primary" id="overview-button"
+            <button class="btn" id="overview-button"
                     type="submit" formaction="/" formmethod="get">Overview</button>
         </div>
     </form>
