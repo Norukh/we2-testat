@@ -71,9 +71,9 @@ export const helpers = {
   evaluateArrow: (a: string, b: string, c: boolean): string => {
     if (a === b) {
       if (c) {
-        return "⬆";
+        return "↑";
       }
-      return "⬇";
+      return "↓";
     }
     return "";
   },
@@ -84,5 +84,13 @@ export const helpers = {
     } else if (theme === Style.Dark) {
       return "🌞";
     }
+  },
+
+  update_create: (id: string) => {
+    if (id) {
+      return "Update";
+    }
+
+    return "Create";
   },
 };

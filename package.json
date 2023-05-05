@@ -1,7 +1,7 @@
 {
-  "name": "notizen",
+  "name": "unicorn-notes",
   "version": "1.0.0",
-  "description": "Vorlage",
+  "description": "A simple note taking app providing TODO functionality",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",

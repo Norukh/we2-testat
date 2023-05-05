@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { noteStore } from "../services/note-store";
-import { Session } from "express-session";
-import { Settings } from "../utils/session-middleware";
 import { Style } from "../utils/style";
 
 export class IndexController {
@@ -33,14 +31,14 @@ export class IndexController {
   }
 
   async switchTheme(req: Request, res: Response) {
-    const session = req.session as Session & { settings: Settings };
+    const settings = req.settings;
 
-    let newStyle = Style.Dark;
-    if (session.settings.style === Style.Light) {
-      newStyle = Style.Light;
+    let newStyle = Style.Light;
+    if (settings.style === Style.Light) {
+      newStyle = Style.Dark;
     }
 
-    session.settings.style = newStyle;
+    settings.style = newStyle;
     res.redirect("/");
   }
 

@@ -13,10 +13,8 @@ export class NotesController {
       ? await noteStore.get(req.params.id as string)
       : new Note();
 
-    res.render("note", {
-      note: await noteStore.save(prepareNote(req.body, note)),
-      theme: req.settings.style,
-    });
+    await noteStore.save(prepareNote(req.body, note));
+    res.redirect("/");
   };
 
   showNote = async (req: Request, res: Response): Promise<void> => {

@@ -35,13 +35,9 @@
         </div>
 
         <div class="notes-page-buttons-row button-list">
-            {{#if note._id}}
-                <button class="btn mr-1" id="update-button" type="submit">Update</button>
-                <button class="btn mr-1" id="update-overview-button" type="submit">Update & Overview</button>
-            {{else}}
-                <button class="btn mr-1" id="create-button" type="submit">Create</button>
-                <button class="btn mr-1" id="create-overview-button" type="submit">Create & Overview</button>
-            {{/if}}
+            <button class="btn mr-1" id="update-create-button" type="submit">
+                {{update_create note._id}}
+            </button>
             <button class="btn" id="overview-button"
                     type="submit" formaction="/" formmethod="get">Overview</button>
         </div>

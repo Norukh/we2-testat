@@ -29,7 +29,17 @@
                 <input type="hidden" name="orderAsc" value="{{orderAsc}}">
                 <input type="hidden" name="filterCompleted" value="{{not filterCompleted}}">
 
-                <button class="btn" type="submit">Filter completed</button>
+
+
+                {{#if filterCompleted}}
+                    <button class="btn-light" type="submit">
+                        ✓ Filter completed
+                    </button>
+                {{else}}
+                    <button class="btn" type="submit">
+                        Filter completed
+                    </button>
+                {{/if}}
             </form>
         </div>
 

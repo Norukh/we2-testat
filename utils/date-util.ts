@@ -1,6 +1,6 @@
 export class DateUtil {
   public static toDateValue(date: Date): string {
-    if (date !== null && date !== undefined) {
+    if (date !== null && date !== undefined && !isNaN(date.valueOf())) {
       const offset = date.getTimezoneOffset();
       date = new Date(date.getTime() - offset * 60 * 1000);
       return date.toISOString().split("T")[0];

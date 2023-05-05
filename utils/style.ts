@@ -1,4 +1,4 @@
 export enum Style {
-  Light,
-  Dark,
+  Light = 0,
+  Dark = 1,
 }
