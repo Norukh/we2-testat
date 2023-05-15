@@ -11,7 +11,7 @@ export class IndexController {
 
     if (req.settings.filterCompleted) {
       notesFiltered = notesFiltered.filter(
-        (note) => note.finished === req.settings.filterCompleted
+        (note) => note.finished !== req.settings.filterCompleted
       );
     }
 

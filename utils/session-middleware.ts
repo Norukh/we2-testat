@@ -7,7 +7,7 @@ export const sessionUserSettings = (
   next: NextFunction
 ) => {
   const userSettings = req.session?.settings || {
-    orderBy: "title",
+    orderBy: "importance",
     orderAsc: false,
     filterCompleted: false,
     style: Style.Light,

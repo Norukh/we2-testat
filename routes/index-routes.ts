@@ -3,8 +3,11 @@ import { indexController } from "../controller/index-controller";
 
 const router = express.Router();
 
-router.get("/", indexController.index);
-router.post("/", indexController.orderByRedirect);
-router.post("/switch-theme", indexController.switchTheme);
+router.route("/")
+    .get(indexController.index)
+    .post(indexController.orderByRedirect);
+
+router.route("/switch-theme")
+    .post(indexController.switchTheme);
 
 export const indexRoutes = router;
