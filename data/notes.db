@@ -1,2 +1,3 @@
 {"dueDate":{"$$date":1683331200000},"createdAt":{"$$date":1683323576948},"title":"Einkaufen","importance":3,"finished":false,"description":"Brot, Mehl, Eier, Butter","_id":"7cPUYb1IRYUTjyzL"}
+{"dueDate":{"$$date":43019856000000},"createdAt":{"$$date":1684130855219},"title":"test","importance":2,"finished":true,"description":"tet","_id":"ZsGnx9AqT56M4hOf"}
 {"dueDate":{"$$date":1682899200000},"createdAt":{"$$date":1683323558310},"title":"Test Nico","importance":5,"finished":true,"description":"test","_id":"lNlTEkYQuc4ZdBkv"}

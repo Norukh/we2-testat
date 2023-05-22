@@ -187,7 +187,9 @@ form > div > input, textarea {
     transition: all 150ms ease-in-out 0s;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus,
+.btn:active {
     color: rgb(255, 255, 255);
     background-color: rgb(17, 97, 73);
     box-shadow: rgb(19 170 82 / 40%) 0 2px 3px, rgb(195 231 202) 0 0 0 3px;
@@ -211,7 +213,9 @@ form > div > input, textarea {
     transition: all 150ms ease-in-out 0s;
 }
 
-.btn-light:hover {
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
     color: rgb(61, 79, 88);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(93, 108, 116);

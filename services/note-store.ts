@@ -1,3 +1,5 @@
+// Disable eslint rule for non-null assertion of the db variable
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Datastore from "nedb-promises";
 import { Note } from "../models/note";
 
